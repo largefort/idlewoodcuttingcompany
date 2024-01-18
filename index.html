@@ -25,6 +25,7 @@
       font-size: 18px;
       color: red;
       animation: fadeOut 1.5s forwards;
+      transform: translateY(-50%);
     }
     @keyframes fadeOut {
       from { opacity: 1; }
@@ -93,7 +94,7 @@
 
     function showDamageNumber(damage) {
       const tree = document.querySelector('.tree');
-      const damageNumber = document.createElement('div');
+      const damageNumber = document.createElement('span');
       damageNumber.classList.add('damage-number');
       damageNumber.innerText = `+${damage}`;
       tree.appendChild(damageNumber);
