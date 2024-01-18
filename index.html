@@ -18,6 +18,17 @@
       height: 100px;
       margin: 10px;
       cursor: pointer;
+      position: relative;
+    }
+    .damage-number {
+      position: absolute;
+      font-size: 18px;
+      color: red;
+      animation: fadeOut 1.5s forwards;
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
     #woodcutter {
       width: 100px;
@@ -65,7 +76,7 @@
   </div>
 
   <script>
-   let logs = 0;
+    let logs = 0;
     let logsPerClick = 1;
     let logsPerSecond = 0;
 
@@ -76,7 +87,19 @@
       let logsToAdd = calculateLogs(treeType);
       logs += logsToAdd;
       updateLogs();
+      showDamageNumber(logsToAdd);
       saveGame(); // Save game state after cutting a tree
+    }
+
+    function showDamageNumber(damage) {
+      const tree = document.querySelector('.tree');
+      const damageNumber = document.createElement('div');
+      damageNumber.classList.add('damage-number');
+      damageNumber.innerText = `+${damage}`;
+      tree.appendChild(damageNumber);
+      setTimeout(() => {
+        damageNumber.remove();
+      }, 1500);
     }
 
     function calculateLogs(treeType) {
