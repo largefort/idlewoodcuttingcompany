@@ -4,45 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Idle Woodcutting Company</title>
-  <!-- Link to Material Design Lite CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-lite@1.3.0/dist/material.indigo-pink.min.css">
-  <!-- Material Design Lite JavaScript (Optional) -->
-  <script src="https://cdn.jsdelivr.net/npm/material-design-lite@1.3.0/dist/material.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
   <style>
-    body {
-      font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-      text-align: center;
+    :root {
+      --primary-color: #4caf50;
+      --text-color: #333;
+      --bg-color: #f5f5f5;
+      --card-bg-color: #fff;
+      --button-bg-color: #4caf50;
+      --button-text-color: #fff;
     }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .mdl-layout__header {
+      background-color: var(--primary-color);
+    }
+
+    .page-content {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: var(--card-bg-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
     .tree {
       width: 100px;
       height: 100px;
       margin: 10px;
       cursor: pointer;
-      position: relative;
+      transition: transform 0.2s;
     }
+
+    .tree:hover {
+      transform: scale(1.1);
+    }
+
     .damage-number {
       position: absolute;
       font-size: 18px;
       color: red;
       animation: fadeOut 1.5s forwards;
     }
+
     @keyframes fadeOut {
       from { opacity: 1; }
       to { opacity: 0; }
     }
+
     #woodcutter {
       width: 100px;
       height: 100px;
       background: url('woodcutter.gif') no-repeat center center;
       background-size: cover;
-      margin: 20px;
+      margin: 20px auto;
       cursor: pointer;
     }
-    #logs {
+
+    #logs, #logsPerSecond, #upgrades {
       margin-top: 20px;
     }
-    #upgrades {
-      margin-top: 20px;
+
+    .mdl-button {
+      background-color: var(--button-bg-color);
+      color: var(--button-text-color);
+    }
+
+    .mdl-button:hover {
+      background-color: darken(var(--button-bg-color), 10%);
     }
   </style>
 </head>
@@ -117,7 +156,7 @@
     }
 
     function updateLogs() {
-      document.getElementById('logs').innerText = parseInt(logs, 10);
+      document.getElementById('logs').innerText = logs;
       document.getElementById('logsPerSecond').innerText = logsPerSecond.toFixed(1);
     }
 
