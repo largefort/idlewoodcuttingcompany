@@ -12,14 +12,37 @@
     body {
       font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
       text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
     }
+
+    header {
+      background-color: #1976D2;
+      color: white;
+      padding: 20px 0;
+      font-size: 24px;
+    }
+
+    .game-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
     .tree {
       width: 100px;
       height: 100px;
       margin: 10px;
       cursor: pointer;
       position: relative;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .damage-number {
       position: absolute;
       font-size: 18px;
@@ -27,10 +50,12 @@
       animation: fadeOut 1.5s forwards;
       transform: translateY(-50%);
     }
+
     @keyframes fadeOut {
       from { opacity: 1; }
       to { opacity: 0; }
     }
+
     #woodcutter {
       width: 100px;
       height: 100px;
@@ -38,42 +63,71 @@
       background-size: cover;
       margin: 20px;
       cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
+    #trees {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    #trees img {
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
     #logs {
       margin-top: 20px;
+      font-size: 18px;
     }
+
+    #logsPerSecond {
+      font-size: 18px;
+    }
+
     #upgrades {
       margin-top: 20px;
+    }
+
+    .upgrade-button {
+      background-color: #1976D2;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .upgrade-button:hover {
+      background-color: #1565C0;
     }
   </style>
 </head>
 <body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">Idle Woodcutting Company</span>
-      </div>
-    </header>
+  <header>
+    Idle Woodcutting Company
+  </header>
 
-    <main class="mdl-layout__content">
-      <div class="page-content">
-        <div id="woodcutter"></div>
+  <div class="game-container">
+    <div id="woodcutter"></div>
 
-        <div id="trees">
-          <img src="tree1.gif" class="tree" onclick="cutTree(1)" alt="Tree 1">
-          <img src="tree2.gif" class="tree" onclick="cutTree(2)" alt="Tree 2">
-          <img src="tree3.gif" class="tree" onclick="cutTree(3)" alt="Tree 3">
-        </div>
+    <div id="trees">
+      <img src="tree1.gif" class="tree" onclick="cutTree(1)" alt="Tree 1">
+      <img src="tree2.gif" class="tree" onclick="cutTree(2)" alt="Tree 2">
+      <img src="tree3.gif" class="tree" onclick="cutTree(3)" alt="Tree 3">
+    </div>
 
-        <p>Logs: <span id="logs">0</span></p>
-        <p>Logs per second: <span id="logsPerSecond">0</span></p>
+    <p id="logs">Logs: <span>0</span></p>
+    <p id="logsPerSecond">Logs per second: <span>0</span></p>
 
-        <div id="upgrades">
-          <p>Logs per click: <span id="logsPerClick">1</span></p>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="buyUpgrade()">Buy Woodcutter Upgrade</button>
-        </div>
-      </div>
-    </main>
+    <div id="upgrades">
+      <p>Logs per click: <span id="logsPerClick">1</span></p>
+      <button class="upgrade-button" onclick="buyUpgrade()">Buy Woodcutter Upgrade</button>
+    </div>
   </div>
 
   <script>
