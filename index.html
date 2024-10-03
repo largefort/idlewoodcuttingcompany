@@ -4,10 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Idle Woodcutting Company</title>
-  <!-- Link to Material Design Lite CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-lite@1.3.0/dist/material.indigo-pink.min.css">
-  <!-- Material Design Lite JavaScript (Optional) -->
-  <script src="https://cdn.jsdelivr.net/npm/material-design-lite@1.3.0/dist/material.min.js"></script>
+  <!-- Link to Base UI CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/@mui/base@latest/umd/index.min.css">
   <style>
     body {
       font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
@@ -135,7 +133,6 @@
     let logsPerClick = 1;
     let logsPerSecond = 0;
 
-    // Load saved game state
     loadGame();
 
     function cutTree(treeType) {
@@ -143,7 +140,7 @@
       logs += logsToAdd;
       updateLogs();
       showDamageNumber(logsToAdd);
-      saveGame(); // Save game state after cutting a tree
+      saveGame(); 
     }
 
     function showDamageNumber(damage) {
@@ -158,7 +155,6 @@
     }
 
     function calculateLogs(treeType) {
-      // You can adjust the logs gained based on the tree type
       switch (treeType) {
         case 1:
           return 5;
@@ -176,11 +172,10 @@
       document.getElementById('logsPerSecond').innerText = logsPerSecond.toFixed(1);
     }
 
-    // Automatically add logs per second
     setInterval(function() {
       logs += logsPerSecond;
       updateLogs();
-      saveGame(); // Save game state every second
+      saveGame();
     }, 1000);
 
     function buyUpgrade() {
@@ -191,14 +186,13 @@
         logsPerSecond += 0.1;
         updateLogs();
         document.getElementById('logsPerClick').innerText = logsPerClick;
-        saveGame(); // Save game state after buying an upgrade
+        saveGame();
       } else {
         alert("Not enough logs to buy the upgrade!");
       }
     }
 
     function saveGame() {
-      // Save game state using localStorage
       localStorage.setItem('woodcuttingGame', JSON.stringify({
         logs,
         logsPerClick,
@@ -207,7 +201,6 @@
     }
 
     function loadGame() {
-      // Load game state from localStorage
       const savedGame = localStorage.getItem('woodcuttingGame');
       if (savedGame) {
         const gameData = JSON.parse(savedGame);
